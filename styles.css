@@ -257,7 +257,6 @@ body{
 }
 
 /* ===== Focus ===== */
-/* ===== Focus (Janemon-like services) ===== */
 .focus-grid{
   display:grid;
   grid-template-columns:repeat(3, 1fr);  /* full-width 3 columns */
@@ -509,24 +508,6 @@ body{
 .timeline p{margin:0 0 8px; color:#c8cbd3; line-height:1.5}
 .timeline p:last-child{margin-bottom:0}
 @media (max-width: 900px){.resume-grid{grid-template-columns:1fr}}
-
-/* ===== Team ===== */
-.team-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px}
-.member{
-  background:var(--card); border:1px solid var(--line); border-radius:14px; overflow:hidden; box-shadow:var(--shadow)
-}
-.member img{width:100%; height:260px; object-fit:cover; display:block}
-.member-info{padding:16px}
-.member-info h3{margin:0 0 4px}
-.member-info p{margin:0 0 10px; color:#c2c5ce}
-.social{display:flex; gap:10px}
-.social a{
-  width:36px; height:36px; border-radius:8px; display:inline-block; background:#101116; border:1px solid var(--line)
-}
-.social a.fb{background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='%23e0ad51' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M13 22v-9h3l1-4h-4V7a1 1 0 0 1 1-1h3V2h-3a5 5 0 0 0-5 5v2H6v4h3v9h4z'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:center}
-.social a.tw{background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='%23e0ad51' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M22 5.9c-.7.3-1.4.5-2.1.6.8-.5 1.3-1.2 1.6-2.1-.7.4-1.6.8-2.4 1-1.4-1.5-3.8-1.6-5.3-.1-1.1 1-1.5 2.6-1 4C9.3 9.2 6.3 7.7 4.3 5.1c-.9 1.7-.4 3.8 1.2 4.9-.6 0-1.1-.2-1.6-.5 0 1.9 1.3 3.6 3.1 4-.5.1-1 .2-1.5.1.4 1.6 1.9 2.8 3.6 2.8-1.4 1.2-3.1 1.8-4.9 1.8H3c1.8 1.2 3.8 1.8 5.9 1.8 7 0 10.9-5.8 10.9-10.9v-.5c.8-.5 1.4-1.2 2-2.1z'/%3E%3C/svg%3E")}
-.social a.ig{background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='%23e0ad51' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z'/%3E%3C/svg%3E")}
-.social a{background-size:18px 18px}
 
 /* ===== certifciates ===== */
 #certificateGrid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px}
