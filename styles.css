@@ -256,21 +256,58 @@ body{
   transition:width 1.2s ease;
 }
 
-/* ===== Services ===== */
-.services-grid{
-  display:grid; grid-template-columns:repeat(3,1fr); gap:26px;
+/* ===== Focus ===== */
+/* ===== Focus (Janemon-like services) ===== */
+.focus-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);  /* full-width 3 columns */
+  gap:0;                                  /* no gaps so borders look like separators */
 }
-.service-card{
-  background:var(--card); border:1px solid var(--line); border-radius:14px; padding:28px 26px;
-  min-height:180px; box-shadow:var(--shadow);
+
+.focus-card{
+  background:transparent;
+  border:0; border-radius:0; box-shadow:none;  /* remove card look */
+  padding:36px 24px;
+  text-align:center;
+
+  /* equal feel regardless of text length */
+  min-height:210px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
 }
-.service-card .icon{width:42px; height:42px; margin-bottom:18px}
-.service-card .icon svg{width:100%; height:100%; fill:var(--accent); opacity:.9}
-.service-card h3{margin:0 0 6px; font-size:18px}
-.service-card p{margin:0; color:#bfc2cb}
-.service-card:hover{transform:translateY(-3px); transition:transform .2s}
-@media (max-width: 980px){.services-grid{grid-template-columns:repeat(2,1fr)}}
-@media (max-width: 640px){.services-grid{grid-template-columns:1fr}}
+
+.focus-card .icon{width:46px; height:46px; margin:0 auto 14px}
+.focus-card .icon svg{width:100%; height:100%; fill:var(--accent)}
+.focus-card h3{margin:0 0 8px; font-size:18px; font-weight:600}
+.focus-card p{
+  margin:0 auto; color:#c6c8d1; font-size:14px; line-height:1.6;
+  max-width:360px;
+}
+
+/* subtle icon motion on hover (demo has a very light effect) */
+.focus-card:hover .icon svg{transform:translateY(-2px); transition:transform .25s}
+
+/* Draw the thin separators (desktop: 3 columns x 2 rows) */
+.focus-grid .focus-card:nth-child(3n+2),
+.focus-grid .focus-card:nth-child(3n+3){ border-left:1px solid var(--line); }
+.focus-grid .focus-card:nth-child(n+4){ border-top:1px solid var(--line); }
+
+/* Tablet: 2 columns */
+@media (max-width: 980px){
+  .focus-grid{ grid-template-columns:repeat(2, 1fr); }
+  .focus-grid .focus-card{ border-left:0; border-top:0; }
+  .focus-grid .focus-card:nth-child(2n+2){ border-left:1px solid var(--line); }
+  .focus-grid .focus-card:nth-child(n+3){ border-top:1px solid var(--line); }
+}
+
+/* Mobile: 1 column (just a simple divider between items) */
+@media (max-width: 640px){
+  .focus-grid{ grid-template-columns:1fr; }
+  .focus-grid .focus-card{
+    border:0; border-top:1px solid var(--line);
+  }
+  .focus-grid .focus-card:first-child{ border-top:0; }
+}
+
 
 /* ===== Stats ===== */
 .stats{position:relative; padding:64px 0}

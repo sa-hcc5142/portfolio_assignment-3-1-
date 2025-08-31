@@ -194,7 +194,7 @@ const counterObserver = new IntersectionObserver(entries => {
     const start = performance.now();
     const step = (t) => {
       const p = Math.min(1, (t - start) / dur);
-      el.textContent = Math.floor(to * (0.2 + 0.8 * p)) + "+" ;
+      el.textContent = Math.floor(to * (0.2 + 0.8 * p));
       if (p < 1) requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
@@ -382,7 +382,8 @@ window.addEventListener('scroll', () => {
 //  typeWriter();
 //  logoTypeWriter();
   
-  // --- Certificate Lightbox ---
+  // --- Certificate Lightbox (DISABLED for clean grid layout) ---
+  /*
   const lightbox = document.getElementById('certificateLightbox');
   const lightboxImage = document.getElementById('lightboxImage');
   const lightboxCaption = document.getElementById('lightboxCaption');
@@ -432,57 +433,5 @@ window.addEventListener('scroll', () => {
       }
     });
   }
-    // --- Project Modal ---
-  const projectModal   = document.getElementById('projectModal');
-  const projectTitle   = document.getElementById('projectTitle');
-  const projectSummary = document.getElementById('projectSummary');
-  const projectGithub  = document.getElementById('projectGithub');
-  const projectClose   = document.getElementById('projectClose');
-
-  if (projectModal && projectTitle && projectSummary && projectGithub) {
-    const projectTiles = document.querySelectorAll('.project-grid .tile');
-
-    projectTiles.forEach(tile => {
-      tile.addEventListener('click', (e) => {
-        e.preventDefault();
-
-        const titleEl = tile.querySelector('.tile-content h3');
-        const paraEl  = tile.querySelector('.tile-content p');
-
-        const title   = titleEl ? titleEl.textContent.trim() : (tile.getAttribute('aria-label') || 'Project');
-        const summary = tile.dataset.summary ? tile.dataset.summary : (paraEl ? paraEl.textContent.trim() : '');
-        const gh      = tile.dataset.github || '#';
-
-        projectTitle.textContent   = title;
-        projectSummary.textContent = summary;
-        projectGithub.href         = gh;
-
-        projectModal.classList.add('show');
-        document.body.style.overflow = 'hidden';
-      });
-    });
-
-    // Close actions
-    if (projectClose) {
-      projectClose.addEventListener('click', () => {
-        projectModal.classList.remove('show');
-        document.body.style.overflow = '';
-      });
-    }
-
-    projectModal.addEventListener('click', (e) => {
-      if (e.target === projectModal) {
-        projectModal.classList.remove('show');
-        document.body.style.overflow = '';
-      }
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && projectModal.classList.contains('show')) {
-        projectModal.classList.remove('show');
-        document.body.style.overflow = '';
-      }
-    });
-  }
-  
+  */
 });
