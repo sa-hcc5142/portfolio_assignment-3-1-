@@ -382,12 +382,12 @@ window.addEventListener('scroll', () => {
 //  typeWriter();
 //  logoTypeWriter();
   
-  // --- Certificate Lightbox (DISABLED for clean grid layout) ---
-  /*
+  // --- Certificate Lightbox  ---
+  
   const lightbox = document.getElementById('certificateLightbox');
   const lightboxImage = document.getElementById('lightboxImage');
   const lightboxCaption = document.getElementById('lightboxCaption');
-  const closeBtn = document.querySelector('.lightbox-close');
+  const closeBtn = document.querySelector('#certificateLightbox .lightbox-close');
   
   if (lightbox && lightboxImage && lightboxCaption && closeBtn) {
     // Prevent links from opening when clicking on certificate tiles
@@ -425,13 +425,58 @@ window.addEventListener('scroll', () => {
       }
     });
     
-    // Close lightbox with Escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && lightbox.classList.contains('show')) {
-        lightbox.classList.remove('show');
-        document.body.style.overflow = '';
-      }
-    });
+   
   }
-  */
+  // --- Project Modal (open from project tiles) ---
+   const projectModal = document.getElementById('projectModal');
+   const projectClose = document.getElementById('projectClose');
+   const projectTitle = document.getElementById('projectTitle');
+   const projectSummary = document.getElementById('projectSummary');
+   const projectGithub = document.getElementById('projectGithub');
+   const projectTiles = document.querySelectorAll('.project-grid .tile');
+ 
+   if (projectModal && projectClose && projectTitle && projectTiles.length) {
+     projectTiles.forEach(tile => {
+       tile.addEventListener('click', (e) => {
+         e.preventDefault();
+         projectTitle.textContent =
+           tile.querySelector('.tile-content h3')?.textContent || 'Project';
+         projectSummary.textContent = tile.dataset.summary || '';
+         const gh = tile.dataset.github;
+         if (gh) { projectGithub.href = gh; projectGithub.style.display = ''; }
+         else { projectGithub.style.display = 'none'; }
+         projectModal.classList.add('show');
+         document.body.style.overflow = 'hidden';
+       });
+     });
+ 
+     projectClose.addEventListener('click', () => {
+       projectModal.classList.remove('show');
+       document.body.style.overflow = '';
+     });
+     projectModal.addEventListener('click', (e) => {
+       if (e.target === projectModal) {
+         projectModal.classList.remove('show');
+        document.body.style.overflow = '';
+       }
+     });
+     
+   }
+   document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Escape') return;
+
+  // close certificate lightbox if open
+  if (lightbox && lightbox.classList.contains('show')) {
+    lightbox.classList.remove('show');
+    document.body.style.overflow = '';
+    return;
+  }
+
+  // close project modal if open
+  if (projectModal && projectModal.classList.contains('show')) {
+    projectModal.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+});
+
 });
