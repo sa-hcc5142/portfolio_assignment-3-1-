@@ -1,0 +1,965 @@
+<?php
+
+// Load configuration, DB connector (mysqli), CSRF helpers, and session utilities.
+require_once __DIR__ . '/app/config.php';
+require_once __DIR__ . '/app/db.php';
+require_once __DIR__ . '/app/csrf.php';
+require_once __DIR__ . '/app/session.php'; // new: centralize session_start() and cookie helpers
+
+// Get a mysqli connection handle ( mysqli_connect + error check inside db())
+$conn = db(); // mysqli_connect handled inside app/db.php
+
+?>
+
+<!doctype html>
+<html lang="en" class="no-js">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sumaiya – Portfolio</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <!-- ===== Header / Nav (fixed) ===== -->
+  <header class="site-header" id="header">
+    <div class="container header-inner">
+      <a class="logo" href="#home" aria-label="sumaiya home">
+        <span class="logo-text" id="logoText"></span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Open Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="nav">
+        <ul>
+          <li><a class="nav-link active" href="#home">Home</a></li>
+          <li><a class="nav-link" href="#about">About</a></li>
+          <li><a class="nav-link" href="#focus">Focus</a></li>
+          <li><a class="nav-link" href="#projects">Projects</a></li>
+          <li><a class="nav-link" href="#resume">Resume</a></li>
+          <li><a class="nav-link" href="#certificates">Certificates</a></li>
+          <li><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero" id="home" aria-label="Intro section">
+    <div class="hero-bg" role="img" aria-label="city light"></div>
+    <div class="container hero-inner">
+      <p class="eyebrow">- I Am Sumaiya Akter</p>
+      <h1 class="hero-title typewriter" id="typewriter" aria-label="Dynamic Title"></h1>
+
+      <div class="hero-meta">
+        <div><strong>Email:</strong> sa.hcc5142@gmail.com</div>
+        <div><strong>Phone:</strong><br> +8801403161753</div>
+        <div><strong>Address:</strong><br>Kuet Main Gate Road,<br>Khulna</div>
+        <div><strong>Country:</strong><br>Bangladesh </div>
+      </div>
+    </div>
+    <a class="scroll-down" href="#about" aria-label="Scroll to About"></a>
+  </section>
+
+  <!-- ===== Profile / About ===== -->
+  <section class="section" id="about">
+    <div class="container">
+      <header class="section-head">
+        <h2>Profile</h2>
+        <p class="section-sub">Building projects, leading initiatives, and striving to make a difference in STEM</p>
+      </header>
+
+      <div class="about-grid">
+        <div class="about-photo">
+          <img src="IMG_me_without_bg.png" alt="Profile portrait">
+        </div>
+
+        <div class="about-card">
+          <article>
+            <span class="kicker">Intro</span>
+            <h3>Hi, I am <span class="accent">Sumaiya Akter👋</span></h3>
+            <p>
+              I am a Computer Science and Engineering undergraduate student at Khulna University of Engineering & Technology.
+              I love working on projects that connect software and hardware, while also taking on leadership roles as a student representative.
+            </p>
+            <p>
+              Beyond academics, I’m passionate about crafting, cycling, and traveling, and I’m always striving to grow both personally and professionally.
+              My long-term goal is to work in impactful fields like Cybersecurity, Artificial Intelligence, and Data Analysis, and eventually pursue a Ph.D. degree to contribute to cutting-edge research in these areas.
+            </p>
+
+            <span class="kicker">skills</span>
+            <div class="skills">
+              <div class="skill">
+                <div class="skill-top">
+                  <span>Web Design</span><span class="skill-val">70%</span>
+                </div>
+                <div class="bar" data-value="60"></div>
+              </div>
+              <div class="skill">
+                <div class="skill-top">
+                  <span>Coding</span><span class="skill-val">60%</span>
+                </div>
+                <div class="bar" data-value="50"></div>
+              </div>
+
+              <div class="skill">
+                <div class="skill-top">
+                  <span>Communication</span><span class="skill-val">75%</span>
+                </div>
+                <div class="bar" data-value="70"></div>
+              </div>
+
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== focus ===== -->
+  <section class="section" id="focus">
+    <div class="container">
+      <header class="section-head">
+        <h2>What I’m Doing</h2>
+        <p class="section-sub">A glimpse of the skills I’m exploring and the projects I’ll be building this semester.</p>
+      </header>
+
+      <div class="focus-grid">
+        <!-- 6 items -->
+        <div class="focus-card">
+          <div class="icon gold" aria-hidden="true">
+            <img src="Focus_icon/web_development.png" alt="Web Development" width="40" height="40">
+          </div>
+          <h3>Web Development</h3>
+          <p>Building a full-fledged website using HTML, CSS, JavaScript, PHP, and Laravel.</p>
+        </div>
+
+        <div class="focus-card">
+          <div class="icon gold">
+            <img src="Focus_icon/database_systems.png" alt="Database Systems" width="40" height="40">
+          </div>
+          <h3>Database Systems</h3>
+          <p>Designing a University Management System with MySQL in Oracle</p>
+        </div>
+
+        <div class="focus-card">
+          <div class="icon gold">
+            <img src="Focus_icon/system_design.png" alt="System Design" width="40" height="40">
+          </div>
+          <h3>System Design</h3>
+          <p>Planning and designing an Android app workflow with JIRA tools</p>
+        </div>
+
+        <div class="focus-card">
+          <div class="icon gold">
+            <img src="Focus_icon/mini_operating_system.png" alt="Mini Operating System" width="40" height="40">
+          </div>
+          <h3>Mini Operating System</h3>
+          <p>Developing a small-scale operating system as part of my OS laboratory</p>
+        </div>
+
+        <div class="focus-card">
+          <div class="icon gold">
+            <img src="Focus_icon/iot.png" alt="IoT & Embedded System" width="40" height="40">
+          </div>
+          <h3>IoT & Embedded System</h3>
+          <p>Working on hardware projects that integrate embedded systems and IoT</p>
+        </div>
+
+        <div class="focus-card">
+          <div class="icon gold">
+            <img src="Focus_icon/volunteering_research.png" alt="Volunteering & Research" width="40" height="40">
+          </div>
+          <h3>Volunteering & Research</h3>
+          <p>Strengthening leadership skills and planning to start my research journey through university clubs</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Stats / Counters with parallax ===== -->
+  <section class="stats">
+    <div class="stats-bg" role="img" aria-label="City light background"></div>
+    <div class="container stats-grid">
+      <div class="stat">
+        <div class="num" data-count="150">0</div>
+        <div class="label">Connections</div>
+      </div>
+      <div class="stat">
+        <div class="num" data-count="10">0</div>
+        <div class="label">Successful Project</div>
+      </div>
+      <div class="stat">
+        <div class="num" data-count="15">0</div>
+        <div class="label">Languages & Tools Learned</div>
+      </div>
+      <div class="stat">
+        <div class="num" data-count="25">0</div>
+        <div class="label">Workshops / Competitions</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Projects ===== -->
+  <section class="section" id="projects">
+    <div class="container">
+      <header class="section-head">
+        <h2>My Projects</h2>
+        <p class="section-sub">Some projects I’ve worked on in hardware, software, and interactive application development</p>
+      </header>
+
+      <div class="project-grid">
+
+
+        <!--  -- Project 1: Java Mental Health Application --
+         <a class="tile" href="#" aria-label="Mental Health Application" data-github="https://github.com/sa-hcc5142/desktop_project_2_2"
+          data-summary="My Mental Health Helper project is a desktop application designed to support users in managing their mental well-being
+          through structured interfaces like login, feeling analysis, help options, shared activities, and fun activities. The project ensures
+          secure authentication using MySQL and manages user data through CRUD operations with MySQL, while JSON parsing helps in handling
+          structured content such as recommendations and activity data. For the prototype, I am implementing core functionalities in a minimal
+          way—such as a basic login system, hard-coded help options, keyword-based feeling analysis, and simple streak/activity tracking—to
+          demonstrate the workflow before expanding into a more complete version. Each interface is being built with JavaFX, ensuring user-friendly
+          navigation while handling backend operations in a straightforward, starter-friendly manner. This project not only introduces me to
+          integrating authentication, database operations, and GUI development but also helps me learn how to design scalable modular applications.
+          Ultimately, it will enrich my app development knowledge by giving me hands-on experience with combining UI/UX, database management, and backend logic into a single cohesive system.">
+          <div class="badge">Nov – Dec 2025</div>
+            <figure class="tile-media">
+            <img src="Projects/mental_health_helper.png" alt="Mental Health Application Using Java">
+            <figcaption class="tile-overlay">
+              <div class="sv-title">Mental Health Helper</div>
+              <div class="sv-sub">Desktop Application</div>
+              <div class="sv-meta">MySQL • JSON Parsing • JavaFX</div>
+            </figcaption>
+          </figure>
+          <div class="tile-content">
+            <h3>Mental Health Application Using Java</h3>
+            <p>The Mental Health Helper project is a JavaFX-based desktop application that provides users with tools for emotional support, activity tracking, and access to help options, while managing data securely through MySQL. It serves as a prototype mental health companion app combining authentication, feeling analysis, and resource recommendations.</p>
+          </div>
+        </a>
+
+         <!-- Project 2: OOP Console Application --
+        <a class="tile" href="#" aria-label="Event Management System" data-github="https://github.com/sa-hcc5142/Event_Management_Project-1-2-"
+        data-summary="I built a C++ console Event Management System with a menu to add, delete, and display events. The core design uses OOP:
+        an abstract Event base, EventType subclasses (e.g., Conference, TradeShow), and an EventDetails class holding name, date, time, location,
+        and participant count. An Equipment hierarchy (Tables, Chairs, Stage, Lighting, Sound, Storage) plus an EquipmentManager lets users select
+        items and computes total cost. An EventManager stores vector<Event*>, supports dynamic add/remove, and prints costed summaries; operator
+        overloading (>>, <<) streamlines input/output. This project strengthened my grasp of inheritance, polymorphism, encapsulation, abstraction,
+        STL containers, and dynamic memory management. It’s a realistic foundation I can extend with validation, persistence, and richer scheduling features.">
+          <div class="badge">Sep – Oct 2023</div>
+          <figure class="tile-media">
+            <img src="Projects/event_management.png" alt="Event Management System - OOP Console Application">
+            <figcaption class="tile-overlay">
+              <div class="sv-title">Event Organizer and Scheduler</div>
+              <div class="sv-sub">Console Application</div>
+              <div class="sv-meta">OOP • STL • DMA</div>
+            </figcaption>
+          </figure>
+          <div class="tile-content">
+            <h3>Event Management System - OOP Console Application</h3>
+            <p>A console-based Event Management tool that lets user plan events end-to-end—create/edit/remove entries with date, time, venue, and headcount—then pick needed equipment (tables, stage, lighting, sound) with automatic cost calculation and clear summaries.
+            Built with a clean, extensible architecture, it’s ready to grow into validation, data persistence, and richer scheduling features.</p>
+          </div>
+        </a>
+
+        <!-- Project 3 : Hardware Project -- 
+        <a class="tile" href="#" aria-label="Safe Drive Guardian" data-github="https://github.com/sa-hcc5142/safe_drive_guardian"
+        data-summary="I along with my two teammates built Safe Drive Guardian, a hardware prototype that detects driver alcohol
+        and prevents unsafe starts. An alcohol sensor (MQ-series) near the steering area feeds an Arduino-class microcontroller
+        via ADC; after a short warm-up and baseline read, the MCU applies simple filtering + threshold logic. If the level stays
+        high for a few samples, it triggers a buzzer warning and drives an engine-disable relay/ignition cut; below-threshold
+        values re-enable normal operation. The circuit includes 12V→5V regulation, transistor drivers for the relay/buzzer, and
+        status LEDs (optional display). we verified it with repeated trials (clean air vs. alcohol vapor), adjusting the threshold
+        for reliability. Building it strengthened our skills in sensor interfacing, calibration, ADC scaling/noise filtering,
+        power/driver electronics, and safety interlocks—practical embedded + automotive fundamentals.">
+          <div class="badge">Sep - Oct 2023</div>
+          <figure class="tile-media">
+            <img src="Projects/safe_drive_guardian.png" alt="Safe Drive Guardian - An Alcohol Detection Project">
+            <figcaption class="tile-overlay">
+              <div class="sv-title">Real Life Problem Based Project</div>
+              <div class="sv-sub">Hardware Prototype</div>
+              <div class="sv-meta">Arduino UNO • Alcohol Sensor • Motor Driver Operations</div>
+            </figcaption>
+          </figure>
+          <div class="tile-content">
+            <h3>Safe Drive Guardian - An Alcohol Detection Project</h3>
+            <p>Safe Drive Guardian is a vehicle-safety prototype that screens for driver alcohol at startup using a sensor + microcontroller; sustained high readings trigger a buzzer and cut the ignition via relay, while safe levels allow normal operation.
+              Built with proper regulation, filtering, and calibration, it showcases practical embedded design for sensor interfacing, noise handling, and automotive safety interlocks.</p>
+          </div>
+        </a>
+        <!-- Project 4: 23-Bit CPU Design --
+        <a class="tile" href="#" aria-label="23-Bit CPU Design Project" data-github="https://github.com/sa-hcc5142/23_bit_cpu_design_using_RISC_architecture-2-1-"
+        data-summary="I built a 23-bit RISC-style CPU in Logisim with the essential blocks—PC, Instruction Memory + IR, a hard-wired Control Unit, Register File,
+        ALU, Data Memory, and status flags (Z, N, V, C). The CPU executes a small ISA (LOAD, STORE, ADD, SUB, AND, OR, JUMP, HALT) via a simple fetch → decode →
+        execute sequence driven by the control signals. Data movement uses a MAR/MBR interface: MAR holds the address, MBR carries data to/from memory, and results
+        from the ALU update the flags. The design is intentionally minimal: fixed-width (23-bit) datapath, no pipelining, and a hardwired control FSM that asserts
+        register enables, ALU op bits, memory R/W, and PC updates. I validated the machine with short programs (e.g., ADD: fetch opcode, load operands to MBR, ALU
+        add, write back, set flags, step PC). Building this tied the instruction format directly to datapath wiring and control timing, clarifying how IR fields
+        drive muxes and enables. It strengthened my grasp of two’s-complement arithmetic, flag logic, and how control/flags influence flow (e.g., JUMP). Overall,
+        it gave me hands-on practice with CPU datapath integration, hardwired control, and step-by-step verification—core computer-architecture skills.">
+          <div class="badge">Mar - Apr 2024</div>
+         <figure class="tile-media">
+            <img src="Projects/23bit_risc_cpu_logisim.png" alt="23-bit CPU design in RISC architecture">
+            <figcaption class="tile-overlay">
+              <div class="sv-title">23-Bit CPU Design</div>
+              <div class="sv-sub">RISC Architecture</div>
+              <div class="sv-meta">ALU • Control Unit • ROM/RAM</div>
+            </figcaption>
+          </figure>
+          <div class="tile-content">
+            <h3>23-bit CPU design in RISC architecture using Logisim</h3>
+            <p>A fully functional 23-bit CPU architecture designed in Logisim with custom ALU, control unit, ROM/RAM memory, and an instruction set supporting arithmetic and bitwise operations.</p>
+          </div>
+        </a>
+
+        <!-- Project 5: Digital Clock with exclusion of '20' in logisim-- 
+        <a class="tile" href="#" aria-label="Digital Clock Project" data-github="https://github.com/sa-hcc5142/Digital_Clock_Project-1-2-"
+        data-summary="I along with my other teammate built a digital clock in Logisim where 1 minute = 59 seconds and 1 hour = 59 minutes,
+        and the value “20” is skipped in both seconds and minutes. The design uses T flip-flop–based counters (sync/async) for seconds (0–59 except 20),
+        minutes (0–59 except 20), and hours (0–23), plus combinational “skip-20” logic that detects 20 and inhibits the next increment. We designed a 0–9
+        seven-segment decoder from K-map equations and drove dual 7-segment displays for each field. A reset/clear line initializes all counters, and carry-out
+        from seconds → minutes → hours advances the next stage. We verified the circuit by simulation, checking the skip behavior and display updates. This project
+        strengthened my grasp of sequential design (counters, T-FFs, state transitions), combinational control (detect/inhibit), and decoder design—core skills in digital logic.">
+          <div class="badge">Sep – Oct 2023</div>
+          <figure class="tile-media">
+            <img src="Projects/Clock_project_1.png" alt="Digital Clock">
+            <figcaption class="tile-overlay">
+              <div class="sv-title">Digital Clock</div>
+              <div class="sv-sub">Skip “20” • Real-time HH:MM</div>
+              <div class="sv-meta">Counters • 7-Segment • Flip-Flops • Logic Gates</div>
+            </figcaption>
+          </figure>
+          <div class="tile-content">
+            <h3>Digital Clock Design</h3>
+            <p>A real-time HH:MM digital clock built in Logisim using counters, decoders, logic gates, and seven-segment displays. Features reset capability and supports both 12-hour formats.</p>
+          </div>
+        </a>
+        <!-- Project 6: Numerical Equations Solver --
+        <a class="tile" href="#" aria-label="Numerical Equations Solver" data-github="https://github.com/Farid-43/Console_Application_Development_Using_Numerical_Methods"
+        data-summary="I along with my two teammates built a C++ console app that implements core numerical methods for study and comparison: linear system solvers (Jacobi, Gauss–Seidel, Gauss,
+        Gauss–Jordan, LU), nonlinear root-finders (Bisection, False Position, Secant, Newton–Raphson), RK4 for first-order ODEs, and matrix inversion. Each routine reads user input, applies
+        convergence checks and iteration limits, and prints step-by-step updates or final solutions. For linear methods, We handled diagonal dominance/pivoting where appropriate; for root-finding,
+        We used tolerances and iteration caps; for RK4, We computed k1–k4 and advance y precisely. The app’s structure makes it easy to run the same problem across multiple methods and compare behavior.
+        Building this strengthened our understanding of convergence, stability, conditioning, and floating-point effects while turning textbook algorithms into working code.">
+          <div class="badge">Oct – Nov 2024</div>
+             <figure class="tile-media">
+            <img src="Projects/numerical_methods_solver.png" alt="Numerical Equations Solver">
+            <figcaption class="tile-overlay">
+              <div class="sv-title">Numerical Methods Based</div>
+              <div class="sv-sub">Console Application</div>
+              <div class="sv-meta">Roots • ODEs • Linear Algebra</div>
+            </figcaption>
+          </figure>
+          <div class="tile-content">
+            <h3>Numerical Equations Solver</h3>
+            <p>A C++ based console application that allows users to solve equations using various numerical methods like Bisection, Newton-Raphson, Runge-Kutta, etc., interactively.</p>
+          </div>
+        </a>
+ -->
+
+
+
+        <?php
+        // Read projects newest-first (created_at desc, then id desc), mysqli style to match the PDF.
+        $sql_projects = "SELECT id, title, summary, image_path, github_url, category, started_on, ended_on, created_at
+                 FROM projects
+                 ORDER BY COALESCE(created_at, NOW()) DESC, id DESC";
+
+        if ($result_projects = mysqli_query($conn, $sql_projects)) :
+          while ($p = mysqli_fetch_assoc($result_projects)) :
+            $cat = strtolower(trim(preg_replace('/[^a-z0-9]+/i', '-', $p['category'] ?? '')));
+            $img = htmlspecialchars($p['image_path'] ?? '', ENT_QUOTES, 'UTF-8');
+            $ttl = htmlspecialchars($p['title'] ?? '', ENT_QUOTES, 'UTF-8');
+            $sum = htmlspecialchars($p['summary'] ?? '', ENT_QUOTES, 'UTF-8');
+            $git = htmlspecialchars($p['github_url'] ?? '', ENT_QUOTES, 'UTF-8');
+
+            /* --- NEW: split category for 2-line overlay ---
+   Admin will type one string in “Category”, e.g.
+   "Desktop Application • MySQL • JSON Parsing • JavaFX"
+   We show: sv-sub = first piece; sv-meta = rest joined by " • "
+*/
+            $overlaySub  = trim((string)($p['category'] ?? 'Project'));
+            $overlayMeta = '';
+            if (strpos($overlaySub, '•') !== false) {
+              $parts = array_map('trim', explode('•', $overlaySub));
+              $overlaySub  = array_shift($parts) ?: $overlaySub;
+              $overlayMeta = implode(' • ', array_filter($parts));
+            }
+            $overlaySub  = htmlspecialchars($overlaySub,  ENT_QUOTES, 'UTF-8');
+            $overlayMeta = htmlspecialchars($overlayMeta, ENT_QUOTES, 'UTF-8');
+
+            // Badge text: prefer started_on–ended_on; fallback to created_at month/day/year
+            $badge = '';
+            if (!empty($p['started_on']) && !empty($p['ended_on'])) {
+              $badge = date('M Y', strtotime($p['started_on'])) . ' – ' . date('M Y', strtotime($p['ended_on']));
+            } elseif (!empty($p['started_on'])) {
+              $badge = date('M Y', strtotime($p['started_on']));
+            } else {
+              $badge = date('M d, Y', strtotime($p['created_at'] ?? 'now'));
+            }
+        ?>
+            <a class="tile"
+              data-id="<?= (int)$p['id'] ?>"
+              href="<?= $git ?: '#' ?>"
+              target="<?= $git ? '_blank' : '_self' ?>"
+              rel="noopener"
+              data-cat="<?= $cat ?>"
+              data-summary="<?= $sum ?>"
+              data-github="<?= $git ?>">
+
+              <div class="badge"><?= htmlspecialchars($badge, ENT_QUOTES, 'UTF-8') ?></div>
+              <figure class="tile-media">
+                <img src="Projects/<?= $img ?>" alt="<?= $ttl ?>">
+                <figcaption class="tile-overlay">
+                  <div class="sv-title"><?= $ttl ?></div>
+                  <div class="sv-sub"><?= $overlaySub ?></div>
+                  <?php if ($overlayMeta !== ''): ?>
+                    <div class="sv-meta"><?= $overlayMeta ?></div>
+                  <?php endif; ?>
+                </figcaption>
+              </figure>
+              <div class="tile-content">
+                <h3><?= $ttl ?></h3>
+                <?php if (!empty($sum)): ?><p><?= $sum ?></p><?php endif; ?>
+              </div>
+            </a>
+        <?php
+          endwhile;
+          mysqli_free_result($result_projects);
+        endif;
+        ?>
+
+        <?php if (!empty($_SESSION['role']) && $_SESSION['role'] === 'ADMIN'): ?>
+          <a class="tile tile--add" href="/portfolio/Admin/projects/create.php" aria-label="Add project">
+            <div class="badge">ADMIN</div>
+            <figure class="tile-media add-media"><span class="plus">+</span></figure>
+            <div class="tile-content">
+              <h3>Add Project</h3>
+              <p>Create a new project</p>
+            </div>
+          </a>
+        <?php endif; ?>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== Resume ===== -->
+  <section class="section" id="resume">
+    <div class="container">
+      <header class="section-head">
+        <h2>Resume</h2>
+        <p class="section-sub">A snapshot of my education, roles, and impact.</p>
+      </header>
+
+      <div class="resume-grid">
+        <div>
+          <h3 class="resume-col-title">Education</h3>
+          <div class="timeline">
+            <div class="item">
+              <span class="year">2019</span>
+              <h4>Holy Cross Girls High School</h4>
+              <p><strong>Secondary School Certificate (2019)</strong></p>
+              <p>GPA : 5.00</p>
+            </div>
+            <div class="item">
+              <span class="year">2021</span>
+              <h4>Holy Cross College</h4>
+              <p><strong>Higher Secondary Certificate (2021)</strong></p>
+              <p>GPA : 5.00</p>
+            </div>
+            <div class="item">
+              <span class="year">January 2023 - Present</span>
+              <h4>Khulna University of Engineering and Technology</h4>
+              <p><strong>Bachelor of Science in Computer Science and Engineering</strong></p>
+              <p>CGPA : 3.52 (current)</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="resume-col-title">Experience</h3>
+          <div class="timeline">
+            <div class="item">
+              <span class="year">Aug 2020 - Sep 2020</span>
+              <h4>Creatrix Official | Brilliant Resources</h4>
+              <p><strong>Campus Ambassador</strong></p>
+              <p>Drove campus outreach, coordinated organizer – participant communications, mobilizing 100+ participants and earning <strong>Best Campus Ambassador</strong> recognition.</p>
+            </div>
+            <!--
+            <div class="item">
+              <span class="year">May 2024 - Present</span>
+              <h4>HCCAK (Holy Cross College Association of KUET)</h4>
+              <p><strong>Assistant General Secretary</strong></p>
+              <p>Organized annual programs and volunteered in university admission fairs.</p>
+            </div>
+          -->
+            <div class="item">
+              <span class="year">August 2024 - Present</span>
+              <h4>HACK (Hardware Acceleration Club of KUET)</h4>
+              <p><strong>Batch Representative</strong></p>
+              <p>Led a team of 3 members in a department event and won the “Best Innovative Project Idea” title.</p>
+            </div>
+            <!--
+            <div class="item">
+              <span class="year">December 2024 - Present</span>
+              <h4>KRS (KUET Research Society)</h4>
+              <p><strong>General Member</strong></p>
+              <p>Organized club activities and volunteered in club events.</p>
+            </div>
+            -->
+            <div class="item">
+              <h4>Substitute Teaching Experience</h4>
+              <p><strong>Holy Cross Girls High School</strong></p>
+              <p>Occasionally take classes as a substitute teacher at Holy Cross Girls High School.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== Certificates ===== -->
+  <section class="section" id="certificates">
+    <div class="container">
+      <header class="section-head">
+        <h2>Certificates</h2>
+        <p class="section-sub">My professional certifications and achievements.</p>
+      </header>
+
+      <ul class="filters" id="certFilters" role="tablist" aria-label="Certificate filters">
+        <li><button class="active" data-filter="all">All</button></li>
+        <li><button data-filter="academics">Academics</button></li>
+        <li><button data-filter="ai-llms">AI & LLMs</button></li>
+        <li><button data-filter="data-sql">Data/SQL</button></li>
+        <li><button data-filter="development">Development</button></li>
+        <li><button data-filter="science-sustainability">Science/Sustainability</button></li>
+        <li><button data-filter="math-logic">Math/Logic</button></li>
+        <li><button data-filter="leadership-awards">Leadership Awards</button></li>
+      </ul>
+
+      <div class="certificateGrid" id="certificateGrid">
+        <!-- Certificate tiles with data-cat for filtering -->
+
+
+        <!-- Academics Certificate -->
+
+        <a class="post" data-cat="academics" href="#" aria-label="Academic Certificate">
+          <div class="badge">Feb 17, 2018</div>
+          <img src="Certificates/Academic_science_fair.jpg" alt="Science Fair Project Certificate">
+          <div class="tile-content">
+            <h3>Holy Cross Girls’ High School — Science Fair (3rd Place, 2018)</h3>
+            <p>Won third place for “Producing Fuel and Electricity from Waste Management,” demonstrating applied research in sustainable energy and practical prototyping.</p>
+          </div>
+        </a>
+        <a class="post" data-cat="academics" href="#" aria-label="Academic Certificate">
+          <div class="badge">Oct 10, 2021</div>
+          <img src="Certificates/Academic_attendence.jpg" alt="Certificate For Attendance">
+          <div class="tile-content">
+            <h3>Holy Cross College — Certificate of Attendance (2019–2021)</h3>
+            <p>Recognized for perfect attendance over two academic years in the Science group, reflecting reliability and consistent engagement.</p>
+          </div>
+        </a>
+
+
+        <!-- AI Certificate -->
+        <a class="post" data-cat="ai-llms" href="#" aria-label="Artificial Intelligence Certificate">
+          <div class="badge">Jul 19, 2025</div>
+          <img src="Certificates/Certificate_agentx.jpg" alt="Artificial Intelligence Certificate">
+          <div class="tile-content">
+            <h3>Artificial Intelligence Certificate</h3>
+            <p>Completed an AI+ Prompt Engineer Level 1™ course Organized By Netcom Learning Bangladesh</p>
+          </div>
+        </a>
+        <a class="post" data-cat="ai-llms" href="#" aria-label="Artificial Intelligence Certificate">
+          <div class="badge">Jun 23, 2025</div>
+          <img src="Certificates/Achievements_Microsoft1.jpg" alt="Microsoft Copilot Certificate">
+          <div class="tile-content">
+            <h3>Microsoft Copilot Certificate</h3>
+            <p>Completed Microsoft Learn’s Microsoft 365 Copilot path—earning an end-to-end suite of certificates in prompt engineering and applied AI across Word,
+              Excel, PowerPoint, and Outlook: ask & analyze, create/draft, edit/transform, summarize, and optimize/extend workflows (including nonprofit use cases).</p>
+          </div>
+        </a>
+        <a class="post" data-cat="ai-llms" href="#" aria-label="Artificial Intelligence Certificate">
+          <div class="badge">Jun 23, 2025</div>
+          <img src="Certificates/Achievements_Microsoft2.jpg" alt="Microsoft Copilot Certificate">
+          <div class="tile-content">
+            <h3>Microsoft Copilot Certificate</h3>
+            <p>Completed Microsoft Learn’s Microsoft 365 Copilot path—earning an end-to-end suite of certificates in prompt engineering and applied AI across Word,
+              Excel, PowerPoint, and Outlook: ask & analyze, create/draft, edit/transform, summarize, and optimize/extend workflows (including nonprofit use cases).</p>
+          </div>
+        </a>
+        <a class="post" data-cat="ai-llms" href="#" aria-label="Artificial Intelligence Certificate">
+          <div class="badge">Jun 23, 2025</div>
+          <img src="Certificates/Achievements_Microsoft3.jpg" alt="Microsoft Copilot Certificate">
+          <div class="tile-content">
+            <h3>Microsoft Copilot Certificate</h3>
+            <p>Completed Microsoft Learn’s Microsoft 365 Copilot path—earning an end-to-end suite of certificates in prompt engineering and applied AI across Word,
+              Excel, PowerPoint, and Outlook: ask & analyze, create/draft, edit/transform, summarize, and optimize/extend workflows (including nonprofit use cases).</p>
+          </div>
+        </a>
+        <a class="post" data-cat="ai-llms" href="#" aria-label="Artificial Intelligence Certificate">
+          <div class="badge">Jun 23, 2025</div>
+          <img src="Certificates/Achievements_Microsoft4.jpg" alt="Microsoft Copilot Certificate">
+          <div class="tile-content">
+            <h3>Microsoft Copilot Certificate</h3>
+            <p>Completed Microsoft Learn’s Microsoft 365 Copilot path—earning an end-to-end suite of certificates in prompt engineering and applied AI across Word,
+              Excel, PowerPoint, and Outlook: ask & analyze, create/draft, edit/transform, summarize, and optimize/extend workflows (including nonprofit use cases).</p>
+          </div>
+        </a>
+        <a class="post" data-cat="ai-llms" href="#" aria-label="Artificial Intelligence Certificate">
+          <div class="badge">Jun 23, 2025</div>
+          <img src="Certificates/Achievements_Microsoft5.jpg" alt="Microsoft Copilot Certificate">
+          <div class="tile-content">
+            <h3>Microsoft Copilot Certificate</h3>
+            <p>Completed Microsoft Learn’s Microsoft 365 Copilot path—earning an end-to-end suite of certificates in prompt engineering and applied AI across Word,
+              Excel, PowerPoint, and Outlook: ask & analyze, create/draft, edit/transform, summarize, and optimize/extend workflows (including nonprofit use cases).</p>
+          </div>
+        </a>
+        <a class="post" data-cat="ai-llms" href="#" aria-label="Artificial Intelligence Certificate">
+          <div class="badge">Jun 23, 2025</div>
+          <img src="Certificates/Achievements_Microsoft6.jpg" alt="Microsoft Copilot Certificate">
+          <div class="tile-content">
+            <h3>Microsoft Copilot Certificate</h3>
+            <p>Completed Microsoft Learn’s Microsoft 365 Copilot path—earning an end-to-end suite of certificates in prompt engineering and applied AI across Word,
+              Excel, PowerPoint, and Outlook: ask & analyze, create/draft, edit/transform, summarize, and optimize/extend workflows (including nonprofit use cases).</p>
+          </div>
+        </a>
+        <a class="post" data-cat="ai-llms" href="#" aria-label="Artificial Intelligence Certificate">
+          <div class="badge">Jun 23, 2025</div>
+          <img src="Certificates/Achievements_Microsoft7.jpg" alt="Microsoft Copilot Certificate">
+          <div class="tile-content">
+            <h3>Microsoft Copilot Certificate</h3>
+            <p>Completed Microsoft Learn’s Microsoft 365 Copilot path—earning an end-to-end suite of certificates in prompt engineering and applied AI across Word,
+              Excel, PowerPoint, and Outlook: ask & analyze, create/draft, edit/transform, summarize, and optimize/extend workflows (including nonprofit use cases).</p>
+          </div>
+        </a>
+        <a class="post" data-cat="ai-llms" href="#" aria-label="Artificial Intelligence Certificate">
+          <div class="badge">Jun 23, 2025</div>
+          <img src="Certificates/Achievements_Microsoft8.jpg" alt="Microsoft Copilot Certificate">
+          <div class="tile-content">
+            <h3>Microsoft Copilot Certificate</h3>
+            <p>Completed Microsoft Learn’s Microsoft 365 Copilot path—earning an end-to-end suite of certificates in prompt engineering and applied AI across Word,
+              Excel, PowerPoint, and Outlook: ask & analyze, create/draft, edit/transform, summarize, and optimize/extend workflows (including nonprofit use cases).</p>
+          </div>
+        </a>
+        <a class="post" data-cat="ai-llms" href="#" aria-label="Artificial Intelligence Certificate">
+          <div class="badge">Jun 23, 2025</div>
+          <img src="Certificates/Achievements_Microsoft9.jpg" alt="Microsoft Copilot Certificate">
+          <div class="tile-content">
+            <h3>Microsoft Copilot Certificate</h3>
+            <p>Completed Microsoft Learn’s Microsoft 365 Copilot path—earning an end-to-end suite of certificates in prompt engineering and applied AI across Word,
+              Excel, PowerPoint, and Outlook: ask & analyze, create/draft, edit/transform, summarize, and optimize/extend workflows (including nonprofit use cases).</p>
+          </div>
+        </a>
+        <a class="post" data-cat="ai-llms" href="#" aria-label="Artificial Intelligence Certificate">
+          <div class="badge">Jun 23, 2025</div>
+          <img src="Certificates/Achievements_Microsoft10.jpg" alt="Microsoft Copilot Certificate">
+          <div class="tile-content">
+            <h3>Microsoft Copilot Certificate</h3>
+            <p>Completed Microsoft Learn’s Microsoft 365 Copilot path—earning an end-to-end suite of certificates in prompt engineering and applied AI across Word,
+              Excel, PowerPoint, and Outlook: ask & analyze, create/draft, edit/transform summarize, and optimize/extend workflows (including nonprofit use cases).</p>
+          </div>
+        </a>
+        <a class="post" data-cat="ai-llms" href="#" aria-label="Artificial Intelligence Certificate">
+          <div class="badge">Jun 23, 2025</div>
+          <img src="Certificates/Achievements_Microsoft11.jpg" alt="Microsoft Copilot Certificate">
+          <div class="tile-content">
+            <h3>Microsoft Copilot Certificate</h3>
+            <p>Completed Microsoft Learn’s Microsoft 365 Copilot path—earning an end-to-end suite of certificates in prompt engineering and applied AI across Word,
+              Excel, PowerPoint, and Outlook: ask & analyze, create/draft, edit/transform, summarize, and optimize/extend workflows (including nonprofit use cases).</p>
+          </div>
+        </a>
+        <a class="post" data-cat="ai-llms" href="#" aria-label="Artificial Intelligence Certificate">
+          <div class="badge">Oct 10, 2024</div>
+          <img src="Certificates/Certificate_CGWLLM.jpg" alt="Code Generation With LLM Certificate">
+          <div class="tile-content">
+            <h3>Code Generation With LLM Certificate by Styava.Dev</h3>
+            <p>Engaged in an applied session on AI-assisted coding—prompting strategies, translating problem statements to code, and best practices/guardrails.</p>
+          </div>
+        </a>
+
+
+        <!-- SQL Certificate -->
+        <a class="post" data-cat="data-sql" href="#" aria-label="Database Management Certificate">
+          <div class="badge">Jul 24, 2025</div>
+          <img src="Certificates/sql_basic_certificate.jpg" alt="HackerRank — SQL (Basic) Certification">
+          <div class="tile-content">
+            <h3>HackerRank — SQL (Basic) Certification</h3>
+            <p>Passed the skills assessment covering core SQL: SELECTs, filtering, sorting, aggregation, basic joins, and query debugging fundamentals.</p>
+          </div>
+        </a>
+
+
+        <!-- Development Certificate -->
+        <a class="post" data-cat="development" href="#" aria-label="Web Development Certificate">
+          <div class="badge">Jul 6, 2025</div>
+          <img src="Certificates/Build_Project_With_PHP_1-C27579.jpg" alt="Build Your First Project With PHP Certification">
+          <div class="tile-content">
+            <h3>Ostad — Build Your First Project with PHP</h3>
+            <p>Completed a hands-on course building a working PHP project; covered core PHP syntax, server-side logic, form handling/CRUD, and practical app structure.</p>
+          </div>
+        </a>
+
+        <!-- Science/Sustainability Certificate -->
+        <a class="post" data-cat="science-sustainability" href="#" aria-label="Science-Sustainability Certificate">
+          <div class="badge">Sep 23, 2021</div>
+          <img src="Certificates/Certificate_ICSO.jpg" alt="ClimateScience Olympiad 2021 — Participation">
+          <div class="tile-content">
+            <h3>ClimateScience Olympiad 2021 — Participation</h3>
+            <p>Took part in a global sustainability challenge applying climate science knowledge, quantitative reasoning, and problem-solving to real-world cases.</p>
+          </div>
+        </a>
+
+        <a class="post" data-cat="science-sustainability" href="#" aria-label="Science-Sustainability Certificate">
+          <div class="badge">Sep 19, 2021</div>
+          <img src="Certificates/Certificate_Astro_Workshop.jpg" alt="Astrovation 1.0 — Astro Workshop (BARC)">
+          <div class="tile-content">
+            <h3>Astrovation 1.0 — Astro Workshop (BARC)</h3>
+            <p>Participated in a hands-on astronomy workshop covering sky-observation basics, space science concepts, and practical tools for exploration.</p>
+          </div>
+        </a>
+
+
+        <!--Math/Logic Certificate -->
+        <a class="post" data-cat="math-logic" href="#" aria-label="Math-Logic Certificate">
+          <div class="badge">Oct 19, 2020</div>
+          <img src="Certificates/Certificate_IYMC.jpg" alt="International Youth Math Challenge 2020">
+          <div class="tile-content">
+            <h3>International Youth Math Challenge 2020 — Qualification Round</h3>
+            <p>Successfully completed the IYMC qualification round by solving advanced math problems under time constraints and formal solution standards.</p>
+          </div>
+        </a>
+        <a class="post" data-cat="math-logic" href="#" aria-label="Math-Logic Certificate">
+          <div class="badge">Oct 12 , 2021</div>
+          <img src="Certificates/Certificate_IQ_quiz.jpg" alt="Aristocrats Mega Fiesta 2021 — IQ Quiz">
+          <div class="tile-content">
+            <h3>Aristocrats Mega Fiesta 2021 — IQ Quiz (3rd Place)</h3>
+            <p>Secured 3rd place representing Holy Cross College, demonstrating rapid logical reasoning, pattern recognition, and general knowledge.</p>
+          </div>
+        </a>
+
+        <!--Leadership/Awards Certificate -->
+        <a class="post" data-cat="leadership-awards" href="#" aria-label="Leadership Awards Certificate">
+          <div class="badge">Sep 09, 2020</div>
+          <img src="Certificates/Certificate_creatrix_bestCA.jpg" alt="Best Campus Ambassador">
+          <div class="tile-content">
+            <h3>Best Campus Ambassador — Creatrix (Lens of Light) </h3>
+            <p>Awarded for outstanding campus outreach and event promotion; recognized for leadership, coordination, and team management impact.</p>
+          </div>
+        </a>
+
+        <a class="post" data-cat="leadership-awards" href="#" aria-label="Leadership Awards Certificate">
+          <div class="badge">Sep 15, 2020</div>
+          <img src="Certificates/Certificate_IGNITE_CA.jpg" alt="Ignite Talent — Campus Ambassador">
+          <div class="tile-content">
+            <h3>Ignite Talent — Campus Ambassador (Brilliant Resources)</h3>
+            <p>Recognized for driving participant recruitment and communications; contributed to logistics and program engagement for an online creative competition.</p>
+          </div>
+        </a>
+        <?php
+        // Append DB-driven certificate tiles (keeping static tiles above)
+        $sql_certs = "SELECT id, title, category, issued_on, image_path, description, created_at
+              FROM certificates
+              ORDER BY COALESCE(issued_on, created_at) DESC, id DESC";
+        if ($result_certs = mysqli_query($conn, $sql_certs)) :
+          while ($c = mysqli_fetch_assoc($result_certs)) :
+            $catRaw  = $c['category'] ?? '';
+            // Turn free-text category into the data-cat your filters expect (e.g., "academics", "ai-llms", "development")
+            $catSlug = strtolower(trim(preg_replace('/[^a-z0-9-]+/', '-', $catRaw)));
+            if ($catSlug === '') {
+              $catSlug = 'academics';
+            } // default for filter stability
+
+            // Badge date: prefer issued_on; fallback to created_at
+            $badge = '';
+            if (!empty($c['issued_on']) && ($t = strtotime($c['issued_on']))) {
+              $badge = date('M d, Y', $t);
+            } elseif (!empty($c['created_at']) && ($t = strtotime($c['created_at']))) {
+              $badge = date('M d, Y', $t);
+            }
+        ?>
+            <a class="post" data-cat="<?= htmlspecialchars($catSlug) ?>" href="#" aria-label="Certificate: <?= htmlspecialchars($c['title']) ?>">
+              <div class="badge"><?= htmlspecialchars($badge) ?></div>
+              <?php if (!empty($c['image_path'])): ?>
+                <img src="Certificates/<?= htmlspecialchars($c['image_path']) ?>" alt="<?= htmlspecialchars($c['title']) ?>">
+              <?php endif; ?>
+              <div class="tile-content">
+                <h3><?= htmlspecialchars($c['title']) ?></h3>
+                <?php if (!empty($c['description'])): ?>
+                  <p><?= htmlspecialchars($c['description']) ?></p>
+                <?php endif; ?>
+              </div>
+            </a>
+        <?php
+          endwhile;
+          mysqli_free_result($result_certs);
+        endif;
+        ?>
+
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Contact ===== -->
+  <section class="section" id="contact">
+    <div class="container">
+      <header class="section-head">
+        <h2>SEND ME A MESSAGE</h2>
+      </header>
+
+      <div class="contact-grid">
+        <!-- Left side: Contact info, socials, CV download -->
+        <aside class="contact-aside">
+          <div class="contact-info">
+            <p class="contact-intro">Getting in touch is easy!</p>
+            <div class="contact-item">
+              <div class="contact-icon">📍</div>
+              <p>Kuet Main Gate Road, Khulna, Bangladesh</p>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">📞</div>
+              <p>+8801403161753</p>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">✉️</div>
+              <p>sa.hcc5142@gmail.com</p>
+            </div>
+          </div>
+
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/sumaiya-akter-14075624a/" class="social-link linkedin" title="LinkedIn" target="_blank" rel="noopener">
+              <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" class="social-icon">
+            </a>
+            <a href="https://github.com/sa-hcc5142" class="social-link github" title="GitHub" target="_blank" rel="noopener">
+              <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" class="social-icon">
+            </a>
+            <a href="https://wa.me/8801403161753" class="social-link whatsapp" title="WhatsApp" target="_blank" rel="noopener">
+              <img src="https://cdn-icons-png.flaticon.com/512/174/174879.png" alt="WhatsApp" class="social-icon">
+            </a>
+            <a href="https://www.facebook.com/sa.hcc5142/" class="social-link facebook" title="Facebook" target="_blank" rel="noopener">
+              <img src="https://cdn-icons-png.flaticon.com/512/174/174848.png" alt="Facebook" class="social-icon">
+            </a>
+            <a href="https://www.instagram.com/neel_manush_248/" class="social-link instagram" title="Instagram" target="_blank" rel="noopener">
+              <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" class="social-icon">
+            </a>
+            <a href="https://www.pinterest.com/sumaiyaakter0248/_profile/" class="social-link pinterest" title="Pinterest" target="_blank" rel="noopener">
+              <img src="https://cdn-icons-png.flaticon.com/512/174/174863.png" alt="Pinterest" class="social-icon">
+            </a>
+          </div>
+
+          <a href="CV/Sumaiya_Akter_CV.pdf" class="download-cv" download="Sumaiya_Akter_CV.pdf">Download CV</a>
+        </aside>
+
+        <!-- Right side: Contact form -->
+        <div class="contact-pane">
+          <?php if (isset($_GET['sent'])):
+            $ok  = ($_GET['sent'] === '1');
+            $msg = $ok ? 'Thanks! Your message was sent.' : 'Sorry—something went wrong. Please try again.';
+          ?>
+            <div class="contact-flash <?= $ok ? 'ok' : 'err' ?>" role="status" aria-live="polite">
+              <?= htmlspecialchars($msg) ?>
+            </div>
+          <?php endif; ?>
+
+          <?php if (!empty($_SESSION['role']) && $_SESSION['role'] === 'ADMIN'): ?>
+            <!-- ADMIN cannot submit: show an informational card + quick link to inbox -->
+            <div class="contact-admin-note">
+              <p><strong>Admins</strong> can view or delete messages in the
+                <a href="/portfolio/Admin/contacts/index.php">Admin inbox</a>.
+                Submitting this form is disabled for Admin accounts.</p>
+            </div>
+
+            <!-- Keep a disabled copy of the form for consistent layout -->
+            <form class="contact-form" id="contact-form" method="post" action="#" aria-disabled="true">
+              <?= csrf_field() ?>
+              <input type="text" name="name" placeholder="Your name" disabled>
+              <input type="email" name="email" placeholder="Your Email  (Use a valid email address)" disabled>
+              <textarea name="message" rows="8" placeholder="Let me know how I can help you" disabled></textarea>
+              <button class="btn-send" type="button" disabled>Send Message</button>
+            </form>
+
+          <?php elseif (!empty($_SESSION['user_id'])): ?>
+            <!-- USER: real, working form -->
+            <form class="contact-form" id="contactForm" method="post" action="/portfolio/public/contact_store.php">
+              <?= csrf_field() ?>
+              <input type="text" name="name" placeholder="Your Name" required maxlength="120">
+              <input type="email" name="email" placeholder="Your Email  (Use a valid email address)" required maxlength="191">
+              <textarea name="message" rows="8" placeholder="Let me know how I can help you" required></textarea>
+              <button class="btn-send" type="submit">Send Message</button>
+            </form>
+
+          <?php else: ?>
+            <!-- GUEST: no form, just sign-in notice -->
+            <div class="contact-guest-note">
+              <p>Please <a href="/portfolio/public/login.php">sign in</a> to contact me.</p>
+            </div>
+          <?php endif; ?>
+        </div><!-- /.contact-pane -->
+
+
+    <!-- Google Map -->
+    <div class="map-wrap">
+      <iframe title="Map - Kuet Main Gate Road, Khulna, Bangladesh"
+        src="https://maps.google.com/maps?q=Kuet+Main+Gate+Road,+Khulna,+Bangladesh&t=&z=15&ie=UTF8&iwloc=&output=embed"
+        loading="eager" referrerpolicy="no-referrer-when-downgrade"
+        allow="geolocation"
+        style="border:0; width:100%; height:380px; display:block; border-radius: 12px; filter:grayscale(40%) brightness(90%); will-change: transform;"></iframe>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container">
+      <p class="copy">Copyright © 2025 Sumaiya Akter | All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button id="backToTop" class="back-to-top" aria-label="Back to top">^</button>
+
+  <!-- Project Modal -->
+  <div id="projectModal" class="lightbox">
+    <div class="lightbox-content">
+      <span class="lightbox-close" id="projectClose">&times;</span>
+      <h3 id="projectTitle"></h3>
+      <p id="projectSummary"></p>
+      <a id="projectGithub" class="modal-link" href="#" target="_blank" rel="noopener">GITHUB LINK</a>
+
+      <?php if (!empty($_SESSION['role']) && $_SESSION['role'] === 'ADMIN'): ?>
+        <div class="admin-actions">
+          <!-- Delete (POST + CSRF) -->
+          <form id="projectDeleteForm" method="post" action="/portfolio/Admin/projects/delete.php" onsubmit="return confirm('Delete this project?');">
+            <input type="hidden" name="id" id="deleteProjectId" value="">
+            <?php echo csrf_field(); ?>
+            <button type="submit" class="modal-link btn-delete">DELETE PROJECT</button>
+          </form>
+
+          <!-- Edit (link) -->
+          <a id="projectEditLink" class="modal-link btn-edit" href="#">EDIT PROJECT</a>
+        </div>
+      <?php endif; ?>
+    </div>
+  </div>
+
+  <!-- Certificate Lightbox Modal -->
+  <div id="certificateLightbox" class="lightbox">
+    <div class="lightbox-content">
+      <span class="lightbox-close">&times;</span>
+      <img id="lightboxImage" src="" alt="Certificate Full View">
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+
+</html>
